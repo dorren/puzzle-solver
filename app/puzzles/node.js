@@ -52,6 +52,29 @@ class Node {
   bfs(callback){
     this.constructor._bfs([this], callback);
   }
+
+  // https://modernpathshala.com/Article/4141/amazon-interview-question-sde-2
+  // Write a program to find max number of nodes in a binary tree on any level.
+  count_by_level(max_level){
+    var count = 0;
+    var level = 1;
+    var stack = [this];
+
+    while(stack.length > 0 && level <= max_level ){
+      var stack2 = [];
+      while(stack.length > 0){
+        var node = stack.shift();
+        count += 1;
+
+        if(node.hasLeft())  { stack2.push(node.left);  }
+        if(node.hasRight()) { stack2.push(node.right); }
+      }
+      stack = stack2;
+      level++;
+    }
+
+    return count;
+  }
 }
 
 export default Node;

@@ -37,3 +37,9 @@ test("bfs()", t => {
 
   t.deepEqual(values, [1,2,3,4,5]);
 });
+
+test("count_by_level()", t => {
+  t.deepEqual(node.count_by_level(1), 1);
+  t.deepEqual(node.count_by_level(2), 3);
+  t.deepEqual(node.count_by_level(3), 5);
+});
