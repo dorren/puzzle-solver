@@ -18,15 +18,16 @@ var RemoveDup = {
     var len = arr.length;
     for(var i=0; i<len; i++){
       for(var j=i+1; j<len; j++){
-        if(arr[i] == arr[j]){
-          for(var k=j; k<len-1; k++){
+        if(arr[i] == arr[j]){          // dup found
+          for(var k=j; k<len-1; k++){  // move tail forward
             arr[k] = arr[k+1];
           }
+          arr.pop(); // then remove last unneeded element.
           len -= 1;
         }
       }
     }
-    return arr.slice(0, len);
+    return arr;
   }
 }
 
