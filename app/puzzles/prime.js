@@ -10,11 +10,13 @@ var Prime = {
       var result = true;
       var max_divisor = Math.floor(Math.sqrt(x));
 
-      for(let i = 2; i <= max_divisor; i++){
-        //console.log("check " + x + ", divisor " + i);
-        if(this.isPrime(i) && x % i == 0){
-          result = false;
-          break;
+      for(let i = 5; i <= max_divisor; i+=2){
+        if(i%3 != 0){
+          console.log("check " + x + ", divisor " + i);
+          if(this.isPrime(i) && x % i == 0){
+            result = false;
+            break;
+          }
         }
       };
 
@@ -22,5 +24,6 @@ var Prime = {
     }
   }
 }
+
 
 export default Prime;

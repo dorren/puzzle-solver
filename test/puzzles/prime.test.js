@@ -10,5 +10,7 @@ test("isPrime()", t => {
   t.is(Prime.isPrime(21), false);
   t.is(Prime.isPrime(97), true);
   t.is(Prime.isPrime(103), true);
-  t.is(Prime.isPrime(197), true);
+  t.is(Prime.isPrime(557), true);
+  t.is(Prime.isPrime(1001), false);
+  t.is(Prime.isPrime(10001), false);
 });
