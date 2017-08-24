@@ -1,7 +1,7 @@
 import test from 'ava';
 import MathUtil from '../../app/models/math_util'
 
-test("combinations", t => {
+test("permutations with repeat", t => {
   var input = ["a", "b", "c"];
   var output =  [ [ "a", "a" ],
                   [ "a", "b" ],
@@ -16,7 +16,7 @@ test("combinations", t => {
   t.deepEqual(MathUtil.permutationsWithRepeat(input, 2), output);
 });
 
-test("permutations", t => {
+test("permutations 2", t => {
   var input = ["a", "b", "c"];
   var output =  [ [ "a", "b" ],
                   [ "a", "c" ],
@@ -24,11 +24,10 @@ test("permutations", t => {
                   [ "b", "c" ],
                   [ "c", "a" ],
                   [ "c", "b" ] ];
-
   t.deepEqual(MathUtil.permutations(input, 2), output);
 });
 
-test("permutations", t => {
+test("permutations 3", t => {
   var input = ["a", "b", "c"];
   var output =  [ [ "a", "b", "c" ],
                   [ "a", "c", "b" ],
@@ -36,7 +35,6 @@ test("permutations", t => {
                   [ "b", "c", "a" ],
                   [ "c", "a", "b" ],
                   [ "c", "b", "a" ] ];
-
   t.deepEqual(MathUtil.permutations(input, 3), output);
 });
 

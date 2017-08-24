@@ -2,36 +2,40 @@
 var MathUtil = {
   /**
    * given input array and target length, generate result permutations.
+   * @param arr, input array
+   * @param k, target length
    */
-  permutations: (arr, targetLength, repeat = false) => {
+  permutations: (arr, k, repeat=false) => {
+    if(k == 1){
+      return arr.map( x => { return [x]; });
+    }
+
     var result = [];
+    for (let i = 0; i < arr.length; i++) {
+      var tail = arr.slice();
 
-    const permutates = (arr, targetLength, memo = []) => {
-      if(memo.length == targetLength){
-        result.push(memo);
-      }else {
-        for (let i = 0; i < arr.length; i++) {
-          var tail = arr.slice();
-
-          if(repeat) { // use repeated elements
-            var head = tail.slice(i, i+1);
-          } else {
-            var head = tail.splice(i, 1);
-          }
-          permutates(tail.slice(), targetLength, memo.concat(head));
-        }
+      if(repeat){
+        var head = tail.slice(i, i+1); // don't remove
+      }else{
+        var head = tail.splice(i, 1);
       }
+      var tails = MathUtil.permutations(tail, k-1, repeat);
+
+      tails.map(tail => {
+        result.push(head.concat(tail));
+      });
     };
 
-    permutates(arr, targetLength);
     return result;
   },
 
   /**
    * generate result permutations with repeats.
+   * @param arr, input array
+   * @param k, target length
    */
-  permutationsWithRepeat: (arr, targetLength) => {
-    return MathUtil.permutations(arr, targetLength, true);
+  permutationsWithRepeat: (arr, k) => {
+    return MathUtil.permutations(arr, k, true);
   },
 
   /**
