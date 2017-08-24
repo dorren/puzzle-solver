@@ -52,11 +52,15 @@ Eg [3, 4, 5, 2, 2, 3, 2] Output Most frequent number is 2.
 
 The frequency is 3. Return the output as string in 'number: frequency' format. e.g. 2: 3 (Please note the space after : and frequency. If multiple numbers have the same highest frequency return the smallest number.
 
+### [Find Prime](app/puzzles/prime.js)
+Check prime numbers.
+  
 ### [Remove duplicates](app/puzzles/rm_dup.js)
 Remove the duplicates from the array without extra space.
 
 ### [Count nodes by level](app/puzzles/node.js)
 Write a program to find max number of nodes in a binary tree on any level.
+
 
 ## Run
 ```
