@@ -15,8 +15,8 @@ var MaxSwap = {
     var max = Math.max.apply(null, arr);
     var maxIndex = arr.indexOf(max);
 
-    var step = Math.min(n, maxIndex);
-    n = n - step;
+    var step = Math.min(n, maxIndex);  // number of swap needed to move this
+    n = n - step;                      // remaining swaps
     var arr2 = MaxSwap.swap(arr, maxIndex, step);
 
     // return head and recursively process the tail.
