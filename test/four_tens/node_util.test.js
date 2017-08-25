@@ -1,5 +1,5 @@
 import test from 'ava';
-import NodeUtil from '../../app/models/node_util'
+import NodeUtil from '../../app/four_tens/node_util'
 
 test("NodeUtil", t => {
 	t.is(NodeUtil.operators.length, 5);

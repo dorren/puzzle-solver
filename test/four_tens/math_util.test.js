@@ -1,5 +1,5 @@
 import test from 'ava';
-import MathUtil from '../../app/models/math_util'
+import MathUtil from '../../app/four_tens/math_util'
 
 test("permutations with repeat", t => {
   var input = ["a", "b", "c"];

@@ -1,6 +1,6 @@
-import MathUtil from '../models/math_util';
-import NodeUtil from '../models/node_util';
-import Node from '../models/node';
+import MathUtil from './math_util';
+import NodeUtil from './node_util';
+import Node from './node';
 
 /**
  * given 4 10s, use + - * / and lg() to solve.

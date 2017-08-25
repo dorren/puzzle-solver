@@ -1,5 +1,5 @@
 import test from 'ava';
-import Node from '../../app/models/node'
+import Node from '../../app/four_tens/node'
 
 
 test("value Node", t => {
