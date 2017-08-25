@@ -8,6 +8,10 @@ class Node {
   hasLeft()  { return this.left  != null; }
   hasRight() { return this.right != null; }
 
+  isLeaf() {
+    return !this.hasLeft() && !this.hasRight();
+  }
+
   height() {
     const _height = (node) => {
       if(node == null) { return 0; }
@@ -71,6 +75,42 @@ class Node {
     }
 
     return count;
+  }
+
+  // walk through the tree and return the node value of this subtree
+  // based on passed in function. Eg,
+  //   node.dfsValue(Math.max) returns the max node value of this subtree
+  dfsValue(compareFn) {
+    var result = this.value;
+    this.dfs(node => {
+      result = compareFn(result, node.value);
+    });
+
+    return result;
+  }
+
+  // return max node value of this subtree.
+  max() { return this.dfsValue(Math.max); }
+
+  // return min node value of this subtree.
+  min() { return this.dfsValue(Math.min); }
+
+  // https://www.hackerrank.com/challenges/ctci-is-binary-search-tree/problem
+  // a tree is binary search tree if
+  //   * every node in a node's left subtree is less than the data value of that node.
+  //   * every node in a node's right subtree is greater than the data value of that node.
+  isBst() {
+    const _isBst = function(node){
+      if(node.isLeaf()){
+        return true;
+      }
+
+      var result = node.left.isBst()  && node.left.max() < node.value &&
+                   node.right.isBst() && node.right.min() > node.value;
+      return result;
+    }
+
+    return _isBst(this);
   }
 }
 
