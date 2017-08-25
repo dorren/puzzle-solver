@@ -3,11 +3,6 @@ import Node from '../../app/puzzles/node';
 
 var node;
 
-//      1
-//    /  \
-//   2    3
-//  / \
-// 4  5
 test.beforeEach(t => {
   // https://www.hackerrank.com/challenges/ctci-is-binary-search-tree/problem
   //

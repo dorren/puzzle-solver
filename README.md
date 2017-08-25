@@ -21,7 +21,7 @@ Output: 1
 Input:  exp = "}{{}}{{{"
 Output: 3
 
-### [Four 10s puzzle](app/puzzles/four_ten.js)
+### [Four 10s puzzle](app/four_tens/four_tens.js)
 Given 4 10s and missing operators between,
 use + - * / and lg() to solve.
 
