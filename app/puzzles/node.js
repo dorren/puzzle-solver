@@ -12,6 +12,7 @@ class Node {
     return !this.hasLeft() && !this.hasRight();
   }
 
+ // return the max height of the tree
   height() {
     const _height = (node) => {
       if(node == null) { return 0; }
@@ -96,6 +97,7 @@ class Node {
   min() { return this.dfsValue(Math.min); }
 
   // https://www.hackerrank.com/challenges/ctci-is-binary-search-tree/problem
+  //
   // a tree is binary search tree if
   //   * every node in a node's left subtree is less than the data value of that node.
   //   * every node in a node's right subtree is greater than the data value of that node.
