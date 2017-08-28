@@ -12,7 +12,6 @@ test.beforeEach(t => {
   //  / \  / \
   // 1  3 5   7
   bst = Bst.build([4,2,6,1,3,5,7]);
-  console.log(bst);
 });
 
 test("isBst()", t=>{

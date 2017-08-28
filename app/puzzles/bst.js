@@ -1,3 +1,6 @@
+/**
+ * binary search tree (BST)
+ */
 class Bst {
   constructor(value){
     this.value = value;
@@ -83,26 +86,26 @@ class Bst {
     }
   }
 
-  // find distance between 2 node values.
-  // @param a, node value a
-  // @param b, node value b
+  /** find distance between 2 node values.
+   *
+   * @param a, node value a
+   * @param b, node value b
+   */
   distanceBetween(a, b){
-    if(a > b){
-      let t = a;
-      a = b;
-      b = t;
+    if(this.value == a){
+      return this.distance(b);
+    }else if(this.value == b){
+      return this.distance(a);
     }
 
-    console.log("between() node=" + this.value + ",a=" + a + ",b=" + b);
+    if(a > b){
+      let t = a; a = b; b = t;
+    }
 
     if(a < this.value && b < this.value){
       return this.left.distanceBetween(a, b);
-    }else if(a < this.value && b == this.value){
-      return this.distance(a);
     }else if (a < this.value && b > this.value){
       return this.distance(a) + this.distance(b);
-    }else if (a == this.value && b > this.value){
-      return this.distance(b);
     }else if (a > this.value && b > this.value){
       return this.right.distanceBetween(a, b);
     }else {
