@@ -95,25 +95,6 @@ class Node {
 
   // return min node value of this subtree.
   min() { return this.dfsValue(Math.min); }
-
-  // https://www.hackerrank.com/challenges/ctci-is-binary-search-tree/problem
-  //
-  // a tree is binary search tree if
-  //   * every node in a node's left subtree is less than the data value of that node.
-  //   * every node in a node's right subtree is greater than the data value of that node.
-  isBst() {
-    const _isBst = function(node){
-      if(node.isLeaf()){
-        return true;
-      }
-
-      var result = node.left.isBst()  && node.left.max() < node.value &&
-                   node.right.isBst() && node.right.min() > node.value;
-      return result;
-    }
-
-    return _isBst(this);
-  }
 }
 
 export default Node;
