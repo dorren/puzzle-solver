@@ -18,6 +18,13 @@ test("isBst()", t=>{
   t.is(bst.isBst(), true);
 });
 
+
+test("find()", t=>{
+  t.is(bst.find(4), bst);
+  t.is(bst.find(1), bst.left.left);
+  t.is(bst.find(-1), null);
+});
+
 test("distance()", t=>{
   t.is(bst.distance(4), 0);
   t.is(bst.distance(3), 2);   // From 4 to 2 takes 2 steps

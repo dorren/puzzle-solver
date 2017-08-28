@@ -55,6 +55,23 @@ class Bst {
     }
   }
 
+  /**
+   * return the node that value match the given val.
+   * @param val, value to search for.
+   * @return node with matching key value.
+   */
+  find(val) {
+    if(val < this.value && this.left){
+      return this.left.find(val);
+    }else if(val == this.value){
+      return this;
+    }else if(val > this.value && this.right){
+      return this.right.find(val);
+    }
+
+    return null;
+  }
+
   // https://www.hackerrank.com/challenges/ctci-is-binary-search-tree/problem
   //
   // a tree is binary search tree if
