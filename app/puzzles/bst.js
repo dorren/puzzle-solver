@@ -119,15 +119,13 @@ class Bst {
       let t = a; a = b; b = t;
     }
 
-    if(a < this.value && b < this.value){
+    let me = this.value;
+    if(a < me && b < me){
       return this.left.distanceBetween(a, b);
-    }else if (a < this.value && b > this.value){
+    }else if (a < me && b > me){
       return this.distance(a) + this.distance(b);
-    }else if (a > this.value && b > this.value){
+    }else if (a > me && b > me){
       return this.right.distanceBetween(a, b);
-    }else {
-      let msg = "should not be here. node=" + this.value + ",a=" + a + ",b=" + b;
-      throw msg;
     }
   }
 }
