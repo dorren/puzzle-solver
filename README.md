@@ -61,10 +61,12 @@ Remove the duplicates from the array without extra space.
 ### [Count nodes by level](app/puzzles/node.js)
 Write a program to find max number of nodes in a binary tree on any level.
 
-### [Binary Search Tree(BST)](app/puzzles/node.js)
+### [Binary Search Tree(BST)](app/puzzles/bst.js)
  a tree is binary search tree if
    * every node in a node's left subtree is less than the data value of that node.
    * every node in a node's right subtree is greater than the data value of that node.
+
+Find distance between any two node in a bst tree.
 
 ![bst image](images/bst.png)
 
