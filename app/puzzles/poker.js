@@ -168,25 +168,27 @@ var Poker  = {
       }
   },
 
+  numToWords: function(num){
+    if(num < 0){
+      return "right";
+    }else if (num == 0){
+      return "none";
+    }else {
+      return "left";
+    }
+  },
+
   // main fn
-  compareCards: function(arr1, arr2){
+  compareHands: function(arr1, arr2){
       var rank1 = this.getRank(arr1);
       var rank2 = this.getRank(arr2);
 
-      if(rank1 < rank2){
-          return "right";
-      }else if(rank1 == rank2){
-          var result = this.compareHighCard(arr1, arr2);
-          if(result < 0){
-              return "right";
-          }else if(result == 0){
-              return "none";
-          }else if(result > 0){
-              return "left";
-          }
-      }else if (rank1 > rank2){
-          return "left";
+      var result = rank1 - rank2;
+      if(result == 0){
+        result = this.compareHighCard(arr1, arr2);
       }
+      var word = this.numToWords(result);
+      return word;
   }
 }
 
