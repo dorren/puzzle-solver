@@ -70,6 +70,12 @@ Find distance between any two node in a bst tree.
 
 ![bst image](images/bst.png)
 
+### [Fibonacci Sum](app/puzzles/fibonacci.js)
+Sum up all even fibonacci numbers up to a given integer.
+
+### [Poker](app/puzzles/poker.js)
+Compare and determine winning poker hand.
+
 ## Run
 ```
 ava install --global

@@ -1,14 +1,14 @@
 var Poker  = {
   ranks:  {"highValue": 0,
-           "pair": 1,
-           "twoPair": 2,
-           "three": 3,
-           "straight": 4,
-           "flush": 5,
-           "fullhouse":6,
-           "four":7,
+           "pair":      1,
+           "twoPair":   2,
+           "three":     3,
+           "straight":  4,
+           "flush":     5,
+           "fullhouse": 6,
+           "four":      7,
            "straightFlush":8,
-           "royalFlush": 9
+           "royalFlush":   9
          },
 
   // check if 2 array is the same
@@ -51,30 +51,34 @@ var Poker  = {
   //        == 0, equal
   //        > 1, left one is bigger
   compareHighCard: function(hand1, hand2){
-    if(hand1.length == 1 && hand2.length == 1){
-      let v1 = hand1[0][0];
-      let v2 = hand2[0][0];
-      return this.valueIndex(v1) - this.valueIndex(v2);
-    }else{
-      var h1 = this.sortHand(hand1);
-      var h2 = this.sortHand(hand2);
+    let vals1 = hand1.map(x => {return x[0];});
+    let vals2 = hand2.map(x => {return x[0];});
+    // sort by frequency values.
+    let freqKV1 = this.frequencies(vals1).sort((a, b) => {return a[1] - b[1];});
+    let freqKV2 = this.frequencies(vals2).sort((a, b) => {return a[1] - b[1];});
 
-      // compare last card.
-      let v1 = h1.slice(-1)[0][0];
-      let v2 = h2.slice(-1)[0][0];
-      if( v1 == v2 ){
-          let len = hand1.length;
-          return this.compareHighCard(h1.slice(0, len - 1), h2.slice(0, len - 1));
-      }else{
-          return this.valueIndex(v1) - this.valueIndex(v2);
-      }
+    let result = 0;
+    while(result == 0 && freqKV1.length > 0){
+      let k1 = freqKV1.pop()[0];
+      let k2 = freqKV2.pop()[0];
+
+      result = this.valueIndex(k1) - this.valueIndex(k2);
     }
+    return result;
   },
 
-  // return frequencies of card.
-  // full house is [2, 3]
-  // 2 pair, [1,2,2]
-  //
+  /**
+   * given input array, return result frequencies in 2D array,
+   * where each item of subarray consists of key and frequency. Eg,
+   *
+   *  ['a', 'b', 'b', 'c', 'c', 'c'] => [['a',1],['b', 2], ['c', 3]]
+   *
+   * reason to use 2D array is easy to sort, can be easilly sort by
+   * either key or frequency.
+   *
+   * @param vals, input array
+   * @return frequency 2D array, [[key, freq], [key, freq], ...]
+   */
   frequencies: function(vals){
     let hash = {};
 
@@ -87,12 +91,12 @@ var Poker  = {
         }
     });
 
-    let counts = [];
-    Object.keys(hash).forEach(key => {
-        counts.push(hash[key]);
+    let freqs = [];
+    Object.keys(hash).sort().forEach(key => {
+        freqs.push([key, hash[key]]);
     });
 
-    return counts.sort();
+    return freqs;
   },
 
 
@@ -125,7 +129,8 @@ var Poker  = {
   // return type of hand, "pair", "flush", etc
   getRank: function(hand){
       let vals = hand.map(x => {return x[0]});
-      let freq = this.frequencies(vals);
+      let freqKV = this.frequencies(vals);
+      let freq = freqKV.map(x => { return x[1];}).sort();
       let maxFreq = Math.max.apply(null, freq);
 
       if(this.isFlush(hand)){
