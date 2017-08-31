@@ -152,13 +152,13 @@ var Poker  = {
       if(maxFreq == 1){
           return this.ranks.highValue;
       }else if(maxFreq == 2){
-        if(this.deepEqual(freq, [1,2,2])){
+        if(freq.length == 3){ // only 3 keys, means 2 pair
             return this.ranks.twoPair;
         } else {
             return this.ranks.pair;
         }
       }else if(maxFreq == 3){
-          if(this.deepEqual(freq, [2,3])){
+          if(freq.length == 2){
               return this.ranks.fullhouse;
           }else{
               return this.ranks.three;
