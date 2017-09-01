@@ -79,6 +79,12 @@ Compare and determine winning poker hand.
 ### [Linked list](app/puzzles/linked_list.js)
 Remove duplicates, reverse linked list.
 
+### [longest common subsequence LCS](app/dynamic/lcs.js)
+Find longest common subsequence of 2 strings.
+
+### [longest increasing subsequence LIS](app/dynamic/lis.js)
+Find longest increasing subsequences of an array.
+
 ## Run
 ```
 ava install --global

@@ -1,5 +1,5 @@
 import test from 'ava';
-import LCS from '../../app/puzzles/lcs';
+import LCS from '../../app/dynamic/lcs';
 
 test("lcs()", t => {
   let a = "ABCDGH";

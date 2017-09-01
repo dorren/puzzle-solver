@@ -10,8 +10,8 @@ var LCS = function(a, b, m=a.length, n=b.length){
     return "";
   }
 
-  if(a[m - 1] == b[n - 1]){
-    return LCS(a, b, m - 1, n - 1) + a[m - 1];
+  if(a[m - 1] == b[n - 1]){                    // last elem match
+    return LCS(a, b, m - 1, n - 1) + a[m - 1]; // do array before last elem
   }else {
     let str1 = LCS(a, b, m, n-1);
     let str2 = LCS(a, b, m - 1, n);

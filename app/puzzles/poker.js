@@ -29,7 +29,7 @@ var Poker  = {
   // @param val, 1 character number value only
   // @return index, value index in 13 values. used to compare hands
   valueIndex: function(val){
-      var values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
+      var values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
       return values.indexOf(val);
   },
 
