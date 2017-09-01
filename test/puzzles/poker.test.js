@@ -32,6 +32,12 @@ test("2 pair right", t => {
   t.is(Poker.compareHands(hand1, hand2), "right");
 });
 
+test("2 pair right", t => {
+  var hand1 = ['2H', '3D', '9S', '2C', '9D'];
+  var hand2 = ['2H', '4D', '9S', '2C', '9D'];
+  t.is(Poker.compareHands(hand1, hand2), "right");
+});
+
 
 test("3 of kind right", t => {
   var hand1 = ['2H', '3D', '8S', '3C', '8D'];

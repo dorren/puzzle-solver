@@ -76,6 +76,9 @@ Sum up all even fibonacci numbers up to a given integer.
 ### [Poker](app/puzzles/poker.js)
 Compare and determine winning poker hand.
 
+### [Linked list](app/puzzles/linked_list.js)
+Remove duplicates, reverse linked list.
+
 ## Run
 ```
 ava install --global
