@@ -10,17 +10,16 @@
  *
  * @param arr, given array
  * @param m, start index
- * @param n, end index, exclusive
  * @return longest ascending sequence array.
  */
 var LIS = {
-  _lis: function(arr, m=0, n=arr.length){
-    if(n - m == 1){
+  _lis: function(arr, m=0){
+    if(m + 1 == arr.length){
       return [[arr[m]]];
     }
 
     let head = arr[m];
-    let tails = this._lis(arr, m + 1, n);
+    let tails = this._lis(arr, m + 1);
     tails.map(tail => {
       if(head < tail[0] ){
         tails.push([head].concat(tail));

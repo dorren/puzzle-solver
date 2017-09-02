@@ -85,6 +85,9 @@ Find longest common subsequence of 2 strings.
 ### [longest increasing subsequence LIS](app/dynamic/lis.js)
 Find longest increasing subsequences of an array.
 
+### [min diff](app/dynamic/min_diff.js)
+Given a number array, partition into 2 arrays, where the difference of the sum of the 2 arrays is the smallest.
+
 ## Run
 ```
 ava install --global
