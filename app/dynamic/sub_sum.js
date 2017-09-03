@@ -13,26 +13,24 @@ var SubSum = {
   reduce: function(arr, s){
     if(arr.length == 0){
       return [];
-    }else if(arr.length == 1 ){
-      return arr[0] == s ? [arr] : [];
     }
-
-    let head = arr[0];
-    if(head == s){
-      return [[head]];
+    if(arr[0] == s){
+      return [[arr[0]]];
+    }
+    if(arr.length == 1 ){
+      return [];
     }
 
      // exclude head
     let tails = this.reduce(arr.slice(1), s);
 
     // include head
+    let head = arr[0];
     if(head < s){
       let tails2 = this.reduce(arr.slice(1), s - head);
       tails2.map(tail =>{
-        if(tail.length > 0){
-          tail.unshift(head);
-          tails.push(tail);
-        }
+        tail.unshift(head);
+        tails.push(tail);
       });
     }
 
@@ -41,7 +39,7 @@ var SubSum = {
 
   run: function(arr, s){
     let output = this.reduce(arr, s);
-    //console.log("output", output);
+    console.log("output", output);
     return output;
   }
 }
