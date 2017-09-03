@@ -39,7 +39,7 @@ var SubSum = {
 
   run: function(arr, s){
     let output = this.reduce(arr, s);
-    console.log("output", output);
+    //console.log("output", output);
     return output;
   }
 }

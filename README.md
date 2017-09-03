@@ -91,6 +91,9 @@ Given a number array, partition into 2 arrays, where the difference of the sum o
 ### [sub sum](app/dynamic/sub_sum.js)
 Given a set of non-negative integers, and a value sum, determine if there is a subset of the given set with sum equal to given sum.
 
+### [coin change](app/dynamic/coin_change.js)
+Given a value N, if we want to make change for N cents, and we have infinite supply of each of S = { S1, S2, .. , Sm} valued coins, how many ways can we make the change?
+
 ## Run
 ```
 ava install --global
