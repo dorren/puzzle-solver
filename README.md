@@ -88,6 +88,9 @@ Find longest increasing subsequences of an array.
 ### [min diff](app/dynamic/min_diff.js)
 Given a number array, partition into 2 arrays, where the difference of the sum of the 2 arrays is the smallest.
 
+### [sub sum](app/dynamic/sub_sum.js)
+Given a set of non-negative integers, and a value sum, determine if there is a subset of the given set with sum equal to given sum.
+
 ## Run
 ```
 ava install --global
