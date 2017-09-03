@@ -25,7 +25,7 @@ var MinDiff = {
   },
 
   partition: function(a, b, excluded=0){
-    console.log(a + " | " + b + " | " + excluded);
+    //console.log(a + " | " + b + " | " + excluded);
 
     if(a.length == 0){
       return [a, b];
@@ -33,13 +33,13 @@ var MinDiff = {
 
     let a1 = a.slice();
     let b1 = b.slice();
-    b1.push(a1.pop());
+    b1.push(a1.pop());   // move one element to b
     let pair1 = this.partition(a1, b1, excluded);
     let diff1 = this.diff(...pair1, excluded);
 
     let a2 = a.slice();
     let b2 = b.slice();
-    let x = a2.pop();
+    let x = a2.pop();    // keep element in a.
     let pair2 = this.partition(a2, b2, excluded + x);
     pair2[0].push(x);
     let diff2 = this.diff(...pair2, excluded);
@@ -53,7 +53,7 @@ var MinDiff = {
 
   run: function(arr){
     let result = this.partition(arr, [], 0);
-    console.log(result);
+    //console.log(result);
     return result;
   }
 }

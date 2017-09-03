@@ -13,37 +13,50 @@
  * @return longest ascending sequence array.
  */
 var LIS = {
-  _lis: function(arr, m=0){
-    if(m + 1 == arr.length){
-      return [[arr[m]]];
+  all: function(arr, compareFn){
+    return arr.reduce((acc, x) => {
+      return acc && compareFn(x);
+    }, true);
+  },
+
+  lis: function(arr){
+    if(arr.length <= 1){
+      return [arr];
     }
 
-    let head = arr[m];
-    let tails = this._lis(arr, m + 1);
-    tails.map(tail => {
-      if(head < tail[0] ){
-        tails.push([head].concat(tail));
+    let head = arr[0];
+    let tails = this.lis(arr.slice(1));
+    //console.log("B", head, tails);
+
+    let maxLen = 0;
+    let result = [];
+    tails.map( tail => {
+      let tail2 = null;
+      if(head < tail[0]){
+        tail.unshift(head);
+      }else if(head < tail[1]){
+        tail2 = tail.slice();
+        tail2[0] =(head);     // replace tail[0] with head
       }
+      //console.log("B.  ", tail, tail2, result);
+      if(tail.length > maxLen){
+        result = [tail];
+        maxLen = tail.length;
+      }else if (tail.length == maxLen){
+        result.push(tail);
+      }
+      if(tail2 && tail2.length >= maxLen){
+        result.push(tail2);
+      }
+      //console.log("B... ", tail, tail2, result);
     });
-    return tails;
+
+    //console.log("C    ", result);
+    return result;
   },
 
   run: function(arr){
-    let arrs = this._lis(arr);
-    //console.log(arrs.join(" | "));
-    let maxLen = 0;
-    let result = [];
-
-    arrs.map(x => {
-      if(x.length > maxLen){
-        maxLen = x.length;
-        result = [x];     // overwrite
-      }else if(x.length == maxLen){
-        result.push(x);   // append
-      }
-    });
-
-    return result;
+    return this.lis(arr);
   }
 }
 export default LIS;
