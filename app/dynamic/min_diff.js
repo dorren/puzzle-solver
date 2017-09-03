@@ -16,34 +16,45 @@
  * Subset2 = {11}, sum of Subset2 = 11
  */
 var MinDiff = {
-  /* sort the array first, then fill 2nd array with element one by one,
-   * and compare 2 arrays' difference with previous difference,
-   * stop till difference starts to grow.
-   */
-  run: function(arr){
-    let sum = arr.reduce((acc, x) => acc + x, 0);
-    arr.sort((a,b) => a - b);
+  sum: function(arr){
+    return arr.reduce((acc, x) => acc + x, 0);
+  },
 
-    let i = arr.length - 1;
-    let sum1 = sum;
-    let sum2 = 0;
-    let last_diff = sum1 - sum2;
-    while(i > 0){
-      let x = arr[i];
-      sum1 -= x;
-      sum2 += x;
+  diff: function(a, b, excluded){
+    return Math.abs(this.sum(a) + excluded - this.sum(b));
+  },
 
-      if(Math.abs(sum1 - sum2) < last_diff){
-        i--;
-        last_diff = Math.abs(sum1 - sum2);
-      }else{
-        i++;
-        break;
-      }
-      //console.log(i + ", " + last_diff);
+  partition: function(a, b, excluded=0){
+    console.log(a + " | " + b + " | " + excluded);
+
+    if(a.length == 0){
+      return [a, b];
     }
 
-    return [arr.slice(0,i), arr.slice(i)];
+    let a1 = a.slice();
+    let b1 = b.slice();
+    b1.push(a1.pop());
+    let pair1 = this.partition(a1, b1, excluded);
+    let diff1 = this.diff(...pair1, excluded);
+
+    let a2 = a.slice();
+    let b2 = b.slice();
+    let x = a2.pop();
+    let pair2 = this.partition(a2, b2, excluded + x);
+    pair2[0].push(x);
+    let diff2 = this.diff(...pair2, excluded);
+
+    if(diff1 < diff2){
+      return pair1;
+    }else{
+      return pair2;
+    }
+  },
+
+  run: function(arr){
+    let result = this.partition(arr, [], 0);
+    console.log(result);
+    return result;
   }
 }
 
