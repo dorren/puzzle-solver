@@ -11,28 +11,23 @@ var SubSum = {
   },
 
   reduce: function(arr, s){
-    if(arr.length == 0){
+    if(s < 0){
       return [];
     }
-    if(arr[0] == s){
-      return [[arr[0]]];
-    }
-    if(arr.length == 1 ){
+    if(arr.length == 0 && s > 0){
       return [];
+    }
+    if(s == 0){
+      return [[]];
     }
 
      // exclude head
     let tails = this.reduce(arr.slice(1), s);
 
     // include head
-    let head = arr[0];
-    if(head < s){
-      let tails2 = this.reduce(arr.slice(1), s - head);
-      tails2.map(tail =>{
-        tail.unshift(head);
-        tails.push(tail);
-      });
-    }
+    let tails2 = this.reduce(arr.slice(1), s - arr[0]);
+    tails2.map(tail => tail.unshift(arr[0]) );
+    tails = tails.concat(tails2);
 
     return tails;
   },
