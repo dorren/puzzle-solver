@@ -49,8 +49,13 @@ var WordBreak = {
   },
 
   run: function(dict, str){
+    this.log("-".repeat(30));
     let output = this.reduce(dict, str);
-    output = output.map(x => x.join(" "));
+    output = output.map(words => {
+      // words may be out of order, sort by src string
+      words.sort((a,b) => str.indexOf(a) - str.indexOf(b));
+      return words.join(" ");
+    });
     return output;
   }
 }

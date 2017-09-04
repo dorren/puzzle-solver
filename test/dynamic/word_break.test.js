@@ -10,3 +10,11 @@ test("run()", t => {
 
   t.deepEqual(WordBreak.run(dict, input), output);
 });
+
+test.only("run()", t => {
+  let dict = ["ladder", "snake", "snakes", "and", "sand"];
+  let input = "snakesandladder";
+  let output = ["snakes and ladder", "snake sand ladder"];
+
+  t.deepEqual(WordBreak.run(dict, input), output);
+});
