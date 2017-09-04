@@ -24,8 +24,12 @@ var MinDiff = {
     return Math.abs(this.sum(a) + excluded - this.sum(b));
   },
 
-  partition: function(a, b, excluded=0){
-    //console.log(a + " | " + b + " | " + excluded);
+  log: function(...items){
+    //console.log(...items);
+  },
+
+  partition: function(a, b, excluded=0, indent=0){
+    this.log("  ".repeat(indent), "A ", excluded, a, b);
 
     if(a.length == 0){
       return [a, b];
@@ -33,17 +37,19 @@ var MinDiff = {
 
     let a1 = a.slice();
     let b1 = b.slice();
-    b1.push(a1.pop());   // move one element to b
-    let pair1 = this.partition(a1, b1, excluded);
+    b1.unshift(a1.pop());   // move one element to b
+    let pair1 = this.partition(a1, b1, excluded, indent+1);
     let diff1 = this.diff(...pair1, excluded);
 
     let a2 = a.slice();
     let b2 = b.slice();
     let x = a2.pop();    // keep element in a.
-    let pair2 = this.partition(a2, b2, excluded + x);
+    let pair2 = this.partition(a2, b2, excluded + x, indent+1);
     pair2[0].push(x);
     let diff2 = this.diff(...pair2, excluded);
 
+    this.log("  ".repeat(indent), "B ", excluded, pair1, " diff ", diff1);
+    this.log("  ".repeat(indent), "C ", excluded, pair2, " diff ", diff2);
     if(diff1 < diff2){
       return pair1;
     }else{
