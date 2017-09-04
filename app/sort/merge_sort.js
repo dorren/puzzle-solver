@@ -40,7 +40,7 @@ var MergeSort = {
 
   split: function(arr, l, r){
     if(l == r) { return; }
-    this.log("S ", arr.slice(l, r+1));
+    this.log("S  ", arr.slice(l, r+1));
 
     let m = Math.floor((l + r)/2);
     this.split(arr, l, m);

@@ -1,7 +1,7 @@
 import test from 'ava';
 import MergeSort from '../../app/sort/merge_sort';
 
-MergeSort.logging = true;
+MergeSort.logging = false;
 
 test("merge_sort", t => {
   let input  = [5, 1, 3, 2];
