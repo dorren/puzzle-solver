@@ -94,6 +94,12 @@ Given a set of non-negative integers, and a value sum, determine if there is a s
 ### [coin change](app/dynamic/coin_change.js)
 Given a value N, if we want to make change for N cents, and we have infinite supply of each of S = { S1, S2, .. , Sm} valued coins, how many ways can we make the change?
 
+### [heap sort](app/sort/heap_sort.js)
+
+### [merge sort](app/sort/merge_sort.js)
+
+
+
 ## Run
 ```
 ava install --global

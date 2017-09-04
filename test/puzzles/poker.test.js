@@ -1,6 +1,11 @@
 import test from 'ava';
 import Poker from '../../app/puzzles/poker';
 
+test("isStraight", t => {
+  var hand1 = ['2H', '3D', '6S', '4C', '5D'];
+  t.is(Poker.isStraight(hand1), true);
+});
+
 test("high card", t => {
   var hand1 = ['2H', '3D', '8S', '4C', '9D'];
   var hand2 = ['2H', '3D', '8S', '4C', '9D'];
