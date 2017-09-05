@@ -15,13 +15,23 @@
 var WordBreak = {
   logging: true,
 
+  /**
+   * @param first arugment is level, used for indenting
+   */
   log: function(...items){
-    if(this.logging)
+    if(this.logging){
+      let level = items.shift();
+      let indent = "  ".repeat(level);
+      items.unshift(indent);
       console.log(...items);
+    }
   },
 
-  reduce: function(dict, str){
-    this.log("A ", dict, str);
+  /**
+   * @param level, purely used for pretty logging
+   */
+  reduce: function(dict, str, level=0){
+    this.log(level, "A ", dict, str);
     if(dict.length == 0 && str.length > 0){
       return [];
     }
@@ -32,19 +42,19 @@ var WordBreak = {
     let dict2 = dict.slice(1);
 
     // exclude dict head, whole string
-    let sln = this.reduce(dict2, str);
+    let sln = this.reduce(dict2, str, level+1);
 
     // include head, substring
     let word = dict[0];
     let i = str.indexOf(word);
     if(i != -1){
         let str2 = str.replace(word, "");
-        let sln2 = this.reduce(dict2, str2);
+        let sln2 = this.reduce(dict2, str2, level+1);
         sln2.map(sln => sln.unshift(word));
         sln = sln.concat(sln2);
     }
 
-    this.log("C ", dict, str, sln);
+    this.log(level, "B ", dict, str, sln);
     return sln;
   },
 
