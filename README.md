@@ -94,7 +94,7 @@ Given a set of non-negative integers, and a value sum, determine if there is a s
 ### [coin change](app/dynamic/coin_change.js)
 Given a value N, if we want to make change for N cents, and we have infinite supply of each of S = { S1, S2, .. , Sm} valued coins, how many ways can we make the change?
 
-### [word break](app/dynamic/word break.js)
+### [word break](app/dynamic/word_break.js)
 Given a string s and a dictionary of words dict, add spaces in s to construct
  a sentence where each word is a valid dictionary word.
 
