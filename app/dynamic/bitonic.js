@@ -10,13 +10,17 @@
  * [5 4 3 2 1 10 6] => 17, from [1 10 6]
  */
 class Bitonic {
+  constructor(){
+    this.resetCache();
+  }
+
   /**
    * @param arr, input number array
    * @param s, starting index, inclusive
    * @param e, ending index, exclusive
    * @return sum
    */
-  static sum(arr, s, e){
+  sum(arr, s, e){
     return arr.reduce((acc,x, i) => {
       if(i>=s && i < e){
         return acc + x;
@@ -50,7 +54,7 @@ class Bitonic {
     return isValid;
   }
 
-  static resetCache(){
+  resetCache(){
     this.cache = {};
   }
 
@@ -60,11 +64,11 @@ class Bitonic {
    * @param e, ending index, exclusive
    * @return true/false
    */
-  static cachedIsBitonic(arr, s, e) {
+  cachedIsBitonic(arr, s, e) {
     let val = this.cache[[s, e]];
     if( val !== undefined ){ return val; }
 
-    let isValid = this.isBitonic(arr, s, e);
+    let isValid = this.constructor.isBitonic(arr, s, e);
 
     this.cache[[s,e]] = isValid;
     return isValid;
@@ -76,7 +80,7 @@ class Bitonic {
    * @param e, ending index, exclusive
    * @return the sum of the bitonic array.
    */
-  static _run(arr, s, e){
+  _run(arr, s, e){
     if(this.cachedIsBitonic(arr, s, e)){
       return this.sum(arr, s, e);
     }else{
@@ -92,8 +96,8 @@ class Bitonic {
    * @return the sum of the bitonic array.
    */
   static run(arr){
-    this.resetCache();
-    return this._run(arr, 0, arr.length);
+    let bitonic = new Bitonic();
+    return bitonic._run(arr, 0, arr.length);
   }
 }
 
