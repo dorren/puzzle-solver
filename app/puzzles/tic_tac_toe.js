@@ -13,7 +13,6 @@ class TicTacToe {
   }
 
   static hasVertical(board, piece, size=3){
-    let total_size = size * size;
     for(let i=0; i<size; i++){
       let match = true;
       for(let j=0; j<size; j++){

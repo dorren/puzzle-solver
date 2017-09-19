@@ -98,6 +98,16 @@ Given a value N, if we want to make change for N cents, and we have infinite sup
 Given a string s and a dictionary of words dict, add spaces in s to construct
  a sentence where each word is a valid dictionary word.
 
+### [Bitonic](app/dynamic/bitonic.js)
+Given an array containing N numbers. The task is to find the maximum sum
+bitonic subarray. A bitonic subarray is a subarray in which elements are
+first increasing and then decreasing. A strictly increasing or strictly
+decreasing subarray is also considered as bitonic subarray.
+```
+[5 3 9 2 7 6 4] => 19, from [2 7 6 4]
+[5 4 3 2 1 10 6] => 17, from [1 10 6]
+```
+
 ### [heap sort](app/sort/heap_sort.js)
 
 ### [merge sort](app/sort/merge_sort.js)
