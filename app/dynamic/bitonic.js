@@ -64,7 +64,7 @@ class Bitonic {
         }
       }
     }
-    if(isValid){ return true; }
+    return isValid;
   }
 
   /**
