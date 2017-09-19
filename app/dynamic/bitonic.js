@@ -32,10 +32,10 @@ class Bitonic {
    * @param e, ending index, exclusive
    * @return true/false
    */
-  static isBitonic(arr, s, e) {
+  static isBitonic(arr, s=0, e=arr.length) {
     let isValid = true;
     let state = 0;
-    
+
     for(let i=s; i<e-1; i++){   // incresing then decreasing
       if(state === 0){
         if(arr[i] > arr[i+1]){ state = 1; }
@@ -46,6 +46,27 @@ class Bitonic {
         }
       }
     }
+
+    return isValid;
+  }
+
+  static resetCache(){
+    this.cache = {};
+  }
+
+  /**
+   * @param arr, input number array
+   * @param s, starting index, inclusive
+   * @param e, ending index, exclusive
+   * @return true/false
+   */
+  static cachedIsBitonic(arr, s, e) {
+    let val = this.cache[[s, e]];
+    if( val !== undefined ){ return val; }
+
+    let isValid = this.isBitonic(arr, s, e);
+
+    this.cache[[s,e]] = isValid;
     return isValid;
   }
 
@@ -56,7 +77,7 @@ class Bitonic {
    * @return the sum of the bitonic array.
    */
   static _run(arr, s, e){
-    if(this.isBitonic(arr, s, e)){
+    if(this.cachedIsBitonic(arr, s, e)){
       return this.sum(arr, s, e);
     }else{
       let sum1 = this._run(arr, s+1, e);    // cut head
@@ -71,6 +92,7 @@ class Bitonic {
    * @return the sum of the bitonic array.
    */
   static run(arr){
+    this.resetCache();
     return this._run(arr, 0, arr.length);
   }
 }
