@@ -34,26 +34,8 @@ class Bitonic {
    */
   static isBitonic(arr, s, e) {
     let isValid = true;
-    for(let i=s; i<e-1; i++){   // whole array is increasing
-      if(arr[i] > arr[i+1]){
-        isValid = false;
-        break;
-      }
-    }
-    if(isValid){ return true; }
-
-    isValid = true;
-    for(let i=s; i<e-1; i++){   // whole array is decreasing
-      if(arr[i] < arr[i+1]){
-        isValid = false;
-        break;
-      }
-    }
-    if(isValid){ return true; }
-
-
-    isValid = true;
     let state = 0;
+    
     for(let i=s; i<e-1; i++){   // incresing then decreasing
       if(state === 0){
         if(arr[i] > arr[i+1]){ state = 1; }
