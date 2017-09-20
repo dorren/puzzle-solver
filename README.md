@@ -108,6 +108,20 @@ decreasing subarray is also considered as bitonic subarray.
 [5 4 3 2 1 10 6] => 17, from [1 10 6]
 ```
 
+### [Water Jugs](app/puzzles/water_jugs.js)
+Given a m litre jug and a n litre jug where 0 < m < n. Both the jugs are
+initially empty. You have to use the jugs to measure d litres of water
+where d < n. Determine the minimum number of operations to be performed to
+obtain d litres of water in one of jug.
+The operations you can perform are:
+
+* Empty a Jug
+* Fill a Jug
+* Pour water from one jug to the other until one of the jugs is either empty or full.
+
+For example, with 3 and 5 liter jug, to get 4 liters requires 6 operations.
+
+
 ### [heap sort](app/sort/heap_sort.js)
 
 ### [merge sort](app/sort/merge_sort.js)
