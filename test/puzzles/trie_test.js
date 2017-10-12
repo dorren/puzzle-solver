@@ -7,21 +7,23 @@ class TrieNode {
   }
 
   append(str){
-    this.append_chars(null, [this], str.split(""));
+    this.append_chars([this], str.split(""));
   }
 
-  append_chars(parent, nodes, chars){
-    //console.log('append_chars', parent, nodes, chars);
+  /**
+   * @param nodes,  array of TrieNode objects.
+   * @param chars,  array of letters to add.
+   */
+  append_chars(nodes, chars){
     if(chars.length === 0){ return; }
 
     let node = this.node_match(nodes, chars[0]);
-    if(node){
-      this.append_chars(node, node.children, chars.slice(1));
-    }else{
+    if(!node){
       node = new TrieNode(chars[0]);
-      parent.children.push(node);
-      this.append_chars(node, node.children, chars.slice(1));
+      this.children.push(node);
     }
+
+    node.append_chars(node.children, chars.slice(1)); // work on tail
   }
 
   // find node that match the given letter.
@@ -65,23 +67,29 @@ class TrieNode {
 
 
 
-test("add 'mount' ", t => {
+// to test just this file, run
+//    ava test/puzzles/trie_test.js
+
+test(" 'mount' ", t => {
   let node = TrieNode.build_from("mount");
+
   let values = [ [ 'm' ], [ 'o' ], [ 'u' ], [ 'n' ], [ 't' ] ];
   t.deepEqual(node.print(), values);
 });
 
-test("add 'mount', 'mounted' ", t => {
+test(" 'mount', 'mounted' ", t => {
   let node = TrieNode.build_from("mount");
   node.append("mounted");
+
   let values = [ [ 'm' ], [ 'o' ], [ 'u' ], [ 'n' ], [ 't' ], [ 'e' ], [ 'd' ] ];
   t.deepEqual(node.print(), values);
 });
 
 
-test("add 'mount', 'maven' ", t => {
+test(" 'mount', 'maven' ", t => {
   let node = TrieNode.build_from("mount");
   node.append("maven");
+
   let values = [ [ 'm' ],
                  [ 'o', 'a' ],
                  [ 'u', 'v' ],
@@ -90,9 +98,10 @@ test("add 'mount', 'maven' ", t => {
   t.deepEqual(node.print(), values);
 });
 
-test("add 'deed', 'deer' ", t => {
+test(" 'deed', 'deer' ", t => {
   let node = TrieNode.build_from("deed");
   node.append("deer");
+
   let values = [ [ 'd' ],
                  [ 'e' ],
                  [ 'e' ],
