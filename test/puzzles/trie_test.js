@@ -6,29 +6,29 @@ class TrieNode {
     this.children = [];
   }
 
-  append_chars(chars){
+  append(str){
+    this.append_chars(null, [this], str.split(""));
+  }
+
+  append_chars(parent, nodes, chars){
+    //console.log('append_chars', parent, nodes, chars);
     if(chars.length === 0){ return; }
 
-    let head = chars[0];
-    let tail = chars.slice(1);
-    let child = null;
-
-    if(this.value === head){
-      this.append_chars(tail);
-    }else if(child = this.child_match(head)){
-      child.append_chars(tail);
+    let node = this.node_match(nodes, chars[0]);
+    if(node){
+      this.append_chars(node, node.children, chars.slice(1));
     }else{
-      child = new TrieNode(head);
-      this.children.push(child);
-      child.append_chars(tail);
+      node = new TrieNode(chars[0]);
+      parent.children.push(node);
+      this.append_chars(node, node.children, chars.slice(1));
     }
   }
 
-  // find children that match the letter.
-  child_match(char){
-    for(let i=0; i< this.children.length; i++){
-      if(this.children[i].value === char){
-        return this.children[i];
+  // find node that match the given letter.
+  node_match(nodes, char){
+    for(let i=0; i< nodes.length; i++){
+      if(nodes[i].value === char){
+        return nodes[i];
       }
     }
 
@@ -36,10 +36,9 @@ class TrieNode {
   }
 
   // build initial tree.
-  static build_from_chars(chars) {
-    let c = chars[0];
-    let head = new TrieNode(c);
-    head.append_chars(chars.slice(1));
+  static build_from(str) {
+    let head = new TrieNode(str[0]);
+    head.append(str);
 
     return head;
   }
@@ -67,22 +66,22 @@ class TrieNode {
 
 
 test("add 'mount' ", t => {
-  let node = TrieNode.build_from_chars("mount".split(''));
+  let node = TrieNode.build_from("mount");
   let values = [ [ 'm' ], [ 'o' ], [ 'u' ], [ 'n' ], [ 't' ] ];
   t.deepEqual(node.print(), values);
 });
 
 test("add 'mount', 'mounted' ", t => {
-  let node = TrieNode.build_from_chars("mount".split(""));
-  node.append_chars("mounted".split(""));
+  let node = TrieNode.build_from("mount");
+  node.append("mounted");
   let values = [ [ 'm' ], [ 'o' ], [ 'u' ], [ 'n' ], [ 't' ], [ 'e' ], [ 'd' ] ];
   t.deepEqual(node.print(), values);
 });
 
 
 test("add 'mount', 'maven' ", t => {
-  let node = TrieNode.build_from_chars("mount".split(""));
-  node.append_chars("maven".split(""));
+  let node = TrieNode.build_from("mount");
+  node.append("maven");
   let values = [ [ 'm' ],
                  [ 'o', 'a' ],
                  [ 'u', 'v' ],
@@ -91,8 +90,12 @@ test("add 'mount', 'maven' ", t => {
   t.deepEqual(node.print(), values);
 });
 
-test.skip("add 'deed', 'deer' ", t => {
-  let node = TrieNode.build_from_chars("deed".split(""));
-  node.append_chars("deer".split(""));
-  console.log(node.print());
+test("add 'deed', 'deer' ", t => {
+  let node = TrieNode.build_from("deed");
+  node.append("deer");
+  let values = [ [ 'd' ],
+                 [ 'e' ],
+                 [ 'e' ],
+                 [ 'd', 'r' ] ]
+  t.deepEqual(node.print(), values);
 });
