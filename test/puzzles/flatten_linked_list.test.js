@@ -19,7 +19,7 @@ class LinkedList{
       let node = stack.splice(index, 1)[0];   // remove node with min value.
 
       if(node.bottom !== null) { stack.push(node.bottom);}
-      if(node.next !== null) { stack.push(node.next);}
+      if(node.next !== null)   { stack.push(node.next);}
 
       parent.next = node;
       parent.bottom = null;
