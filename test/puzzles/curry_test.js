@@ -10,7 +10,7 @@ function sum(a, b, acc=0){
   }
 }
 
-// sum(1,5) => 1*1 + 2*2 + 3*3 + 4*4, 30
+// sum_square(1,5) => 1*1 + 2*2 + 3*3 + 4*4, 30
 function sum_square(a, b, acc=0){
   if(a == b){
     return acc;
