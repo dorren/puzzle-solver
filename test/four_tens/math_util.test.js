@@ -63,3 +63,11 @@ test("combinations", t => {
   var output = MathUtil.combinations(input);
   t.deepEqual(output, expected);
 });
+
+test("combinations2", t => {
+  var input = [...Array(3).keys()]; // [0,1,2]
+  var expected = [ [], [ 2 ], [ 1 ], [ 1, 2 ], [ 0 ], [ 0, 2 ], [ 0, 1 ], [ 0, 1, 2 ] ];
+
+  var output = MathUtil.combinations2(input);
+  t.deepEqual(output, expected);
+});

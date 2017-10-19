@@ -81,8 +81,20 @@ var MathUtil = {
     }
 
     return result;
+  },
+
+  combinations2: (arr) => {
+    return(
+      arr.reduceRight((acc, x) => {
+        return acc.concat(
+          acc.reduce((acc2, y)=>{
+            acc2.push([x].concat(y));
+            return acc2;
+          }, [])
+        );
+      }, [[]])
+    );
   }
 }
-
 
 export default MathUtil;
